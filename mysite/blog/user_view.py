@@ -33,7 +33,7 @@ def register(request):
     else:
         form = UserCreationForm()
     return render_to_response("register.html",
-            {'form':forms})
+            {'form':forms},RequestContex(request))
 
 # reset password:
 def resetpass(request, template_name):
