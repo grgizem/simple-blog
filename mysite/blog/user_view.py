@@ -31,7 +31,7 @@ def register(request):
             new_user = form.save(data)
             return HttpResponseRedirect()
     else:
-        form = UserCreatonForm()
+        form = UserCreationForm()
     return render_to_response("register.html",
             {'form':forms})
 
