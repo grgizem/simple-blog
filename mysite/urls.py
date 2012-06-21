@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import patterns, include, url
 from blog.user_view import login, logout, register, resetpass
-
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import admin
 admin.autodiscover()
 
@@ -18,3 +18,4 @@ urlpatterns = patterns('',
     url(r'^accounts/register/$', register),
 
 )
+urlpatterns += staticfiles_urlpatterns()
