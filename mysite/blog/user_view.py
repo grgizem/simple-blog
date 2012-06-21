@@ -27,7 +27,7 @@ def logout(request):
 # new user registeration:
 def register(request):
     form = UserCreationForm()
-    if request.method == 'POST'
+    if request.method == 'POST':
         data = request.POST.copy()
         errors = form.get_validation_errors(data)
         if not errors:
