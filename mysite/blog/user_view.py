@@ -28,12 +28,12 @@ def register(request):
     if request.method == 'POST':
 	form = UserCreationForm(request.POST)
 	if form.is_valid():
-            new_user = form.save(data)
-            return HttpResponseRedirect()
+            new_user = form.save()
+            return HttpResponseRedirect("/")
     else:
         form = UserCreationForm()
     return render_to_response("register.html",
-            {'form':forms},RequestContext(request))
+            {'form':form},RequestContext(request))
 
 # reset password:
 def resetpass(request, template_name):
