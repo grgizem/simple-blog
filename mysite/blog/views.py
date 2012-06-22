@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 
 from django.template import RequestContext
-
+from blog.forms import EntryForm
 from django.shortcuts import render_to_response, redirect
 
 # add comment:
