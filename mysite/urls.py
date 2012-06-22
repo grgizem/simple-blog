@@ -19,7 +19,7 @@ urlpatterns = patterns('',
     url(r'^accounts/logout/$', logout),
     url(r'^accounts/register/$', register),
 
-    url(r'^accounts/editprofile/$', 'django.contrib.auth.views.password_change', {'template_name' : 'editprofile.html'}),
+    url(r'^accounts/changepass/$', 'django.contrib.auth.views.password_change', {'template_name' : 'changepass.html'}),
     url(r'^accounts/profile/$', profile),
     url(r'^newpost/$', newpost, name='newpost'),
     
