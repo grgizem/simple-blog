@@ -12,6 +12,16 @@ def add_entry(request):
     if request.POST:
         entryform = EntryForm(request.POST)
         if entryform.is_valid():
-            entryform.save(request)
+            e = entryform.save(request)
+	    ctx = {
+		  'notification' : "Your post is waiting to approve by admin."
+		  }
+	    return render_to_response('home.html', ctx, RequestContext(request))
     else:
         entryform = EntryForm()
+	return render_to_response('post.html', {'form' : entryform}, RequensContext(request))
+
+# profile page:
+@login_required
+def profile(request):
+    return render_to_response('profile.html', RequestContext(request))
