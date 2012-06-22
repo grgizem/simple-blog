@@ -20,7 +20,7 @@ urlpatterns = patterns('',
     url(r'^accounts/register/$', register),
 
     url(r'^accounts/changepass/$', 'django.contrib.auth.views.password_change', {'template_name' : 'changepass.html'}),
-    url(r'^password_change/done/$', 'django.contrib.auth.views.password_change_done', {'template_name' : 'changepass_done.html'}),
+    url(r'^password_change/done/$', 'django.contrib.auth.views.password_change_done', {'template_name' : 'profile.html'}),
     url(r'^accounts/profile/$', profile),
     url(r'^newpost/$', newpost, name='newpost'),
     
