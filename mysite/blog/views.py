@@ -19,7 +19,7 @@ def newpost(request):
 	    return render_to_response('home.html', ctx, RequestContext(request))
     else:
         entryform = EntryForm()
-	return render_to_response('post.html', {'form' : entryform}, RequensContext(request))
+	return render_to_response('post.html', {'form' : entryform}, RequestContext(request))
 
 # profile page:
 @login_required
