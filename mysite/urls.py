@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import patterns, include, url
 from blog.user_view import logout, register, resetpass
-from blog.views import newpost, profile
+from blog.views import newpost, profile, changepass, changeemail
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import admin
 admin.autodiscover()
@@ -20,7 +20,8 @@ urlpatterns = patterns('',
     url(r'^accounts/register/$', register),
 
     url(r'^accounts/changepass/$', 'django.contrib.auth.views.password_change', {'template_name' : 'changepass.html'}),
-    url(r'^password_change/done/$', 'django.contrib.auth.views.password_change_done', {'template_name' : 'profile.html'}),
+    url(r'^password_change/done/$', changepass),
+    url(r'^accounts/changeemail/$', changeemail),
     url(r'^accounts/profile/$', profile),
     url(r'^newpost/$', newpost, name='newpost'),
     

@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 
 from django.template import RequestContext
-from blog.forms import EntryForm
+from blog.forms import EntryForm, ChangeEmailForm
 from django.shortcuts import render_to_response, redirect
 
 # add comment:
@@ -47,4 +47,4 @@ def changeemail(request):
 # profile page:
 @login_required
 def profile(request):
-    return render_to_response('profile.html', {'profile' : request.user}, RequestContext(request))
+    return render_to_response('profile.html', RequestContext(request))
