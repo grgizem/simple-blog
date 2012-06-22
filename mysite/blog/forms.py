@@ -26,7 +26,7 @@ class EntryForm(forms.ModelForm):
 		entry = Entry(content = self.cleaned_data["content"], author = request.user)
 		entry.save()
 
-class ChangeEmailForm():
+class ChangeEmailForm(forms.ModelForm):
 	class Meta:
 		model = User
 		fields = ("email")
