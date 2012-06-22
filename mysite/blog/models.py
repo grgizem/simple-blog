@@ -8,11 +8,15 @@ class Entry(models.Model):
     edit_date = models.DateTimeField(auto_now_add=True)
     view_count = models.IntegerField(editable=False,default=0)
     author = models.ForeignKey(User, related_name="entries")
+    approvement = models.BooleanField(default=False)
 
     def save(self):
         self.edit_date = datetime.datetime.now()
         self.view_count=self.view_count+1
         super(Entry, self).save()
+    
+    def approve_entry(self):
+	self.approvement = True
 
     def __unicode__(self):
         return self.content
