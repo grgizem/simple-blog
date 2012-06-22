@@ -8,7 +8,7 @@ from django.shortcuts import render_to_response, redirect
 
 # add comment:
 @login_required
-def add_entry(request):
+def newpost(request):
     if request.POST:
         entryform = EntryForm(request.POST)
         if entryform.is_valid():

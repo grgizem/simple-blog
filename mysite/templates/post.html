@@ -6,7 +6,7 @@
             <h2>New Post</h2>
           </div>
 
-	<form action="{% url new_post %}" method="POST">
+	<form action="{% url newpost %}" method="POST">
 	{% csrf_token %}
             <table>
               {{ form.as_table }}
