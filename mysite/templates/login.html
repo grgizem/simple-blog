@@ -1,10 +1,12 @@
 {% extends "base.html" %}
 
-{% block content %}
+{% block notification %}
+	{% if form.errors %}
+		Sorry, that's not a valid username or password.
+	{% endif %}
+{% endblock %}
 
-  {% if form.errors %}
-    <p class="error">Sorry, that's not a valid username or password</p>
-  {% endif %}
+{% block content %}
 
   <form action='.' method='post'> {% csrf_token %}
     <label for="username">User name:</label>
