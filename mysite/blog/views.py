@@ -21,6 +21,29 @@ def newpost(request):
         entryform = EntryForm()
 	return render_to_response('post.html', {'form' : entryform}, RequestContext(request))
 
+# change password redrirection:
+@login_required
+def changepass(request):
+    ctx = {
+	  'notfication' : "Your password successfuly changed."
+	  }
+    return render_to_response('home.html', ctx, RequestContext(request))
+
+# change email:
+@login_required
+def changeemail(request):
+    if request.POST:
+	emailform = ChangeEmailForm(request.POST)
+	if emailform.is_valid():
+	    e = entryform.save(request)
+	    ctx = {
+		  'notification' : "Your e-mail successfuly changed."
+		  }
+	    return render_to_response('home.html', ctx, RequestContext(request))
+    else:
+	emailform = ChangeEmailForm()
+	return render_to_response('changeemail.html', {'form' : emailform}, RequestContext(request))
+
 # profile page:
 @login_required
 def profile(request):
