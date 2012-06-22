@@ -35,7 +35,7 @@ def changeemail(request):
     if request.POST:
 	emailform = ChangeEmailForm(request.POST)
 	if emailform.is_valid():
-	    e = entryform.save(request)
+	    e = emailform.save(request)
 	    ctx = {
 		  'notification' : "Your e-mail successfuly changed."
 		  }
