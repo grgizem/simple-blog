@@ -17,7 +17,7 @@ urlpatterns = patterns('',
     url(r'^accounts/login/$',  'django.contrib.auth.views.login', {'template_name' : 'login.html'}),
     url(r'^accounts/logout/$', logout),
     url(r'^accounts/register/$', register),
-    url(r'^newpost/$', newpost, name=newpost),
+    url(r'^newpost/$', newpost, name='newpost'),
 
 )
 urlpatterns += staticfiles_urlpatterns()
