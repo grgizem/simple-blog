@@ -71,7 +71,7 @@
 		{% else %}
   			<p>Welcome. If you have an account, please log in. Otherwise you can easily register and start blogging.</p>
 		{% endif %}
-		{% block notification %}{% endblock %}
+		<div class="error">{% block notification %}{% endblock %}</div>
           </div>
           	{% block content %}{% endblock %}
 	</div><!--/span-->
