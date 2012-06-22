@@ -1,5 +1,6 @@
 from django.conf.urls.defaults import patterns, include, url
 from blog.user_view import login, logout, register, resetpass
+from blog.views import add_entry
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import admin
 admin.autodiscover()
@@ -16,6 +17,7 @@ urlpatterns = patterns('',
     url(r'^accounts/login/$',  'django.contrib.auth.views.login', {'template_name' : 'login.html'}),
     url(r'^accounts/logout/$', logout),
     url(r'^accounts/register/$', register),
+    url(r'^newpost/$', add_entry, name=new_post),
 
 )
 urlpatterns += staticfiles_urlpatterns()
