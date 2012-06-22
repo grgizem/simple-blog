@@ -7,8 +7,7 @@ from django.contrib.auth.views import password_reset
 from django.contrib.auth.decorators import login_required
 
 from django.template import RequestContext
-from django.contrib.auth.forms import UserCreationForm
-from django import forms
+from blog.forms import NewUserCreationForm
 
 from django.shortcuts import render_to_response, redirect
 
@@ -26,12 +25,12 @@ def logout(request):
 # new user registeration:
 def register(request):
     if request.method == 'POST':
-	form = UserCreationForm(request.POST)
+	form = NewUserCreationForm(request.POST)
 	if form.is_valid():
             new_user = form.save()
             return HttpResponseRedirect("/")
     else:
-        form = UserCreationForm()
+        form = NewUserCreationForm()
     return render_to_response("register.html",
             {'form':form},RequestContext(request))
 
