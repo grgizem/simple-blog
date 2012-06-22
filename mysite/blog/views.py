@@ -24,4 +24,4 @@ def newpost(request):
 # profile page:
 @login_required
 def profile(request):
-    return render_to_response('profile.html', RequestContext(request))
+    return render_to_response('profile.html', {'profile' : request.user}, RequestContext(request))
