@@ -15,3 +15,13 @@ class NewUserCreationForm(UserCreationForm):
 		if commit:
 			user.save()
 		return user
+
+class EntryForm(forms.ModelForm):
+	class Meta:
+		model = Entry
+		exclude = ["pub_date","edit_date","view_count","author","approvement"]
+	
+	def save(self,request):
+		entry = Entry(content = self.cleaned_data["content"], author = request.user)
+		entry.save()
+
