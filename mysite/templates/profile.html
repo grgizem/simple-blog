@@ -1,11 +1,10 @@
 {% extends "base.html" %}
 
-
+{% block title %}
+Profile
+<h6>You can change your password and e-mail address from clicking buttons down there.</h6>
+{% endblock %}
 {% block content %}
-          <p>
-            <h4>Profile</h4>
-          </p>
-
             <table>
 		<tr>
 		<td><b>Username : </b></td><td>{{ user.username }} </td>

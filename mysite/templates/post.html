@@ -1,11 +1,9 @@
 {% extends "base.html" %}
-
+{% block title %}
+New Post
+{% endblock %}
 
 {% block content %}
-          <div class="hero-unit">
-            <h2>New Post</h2>
-          </div>
-
 	<form action="{% url newpost %}" method="POST">
 	{% csrf_token %}
             <table>
