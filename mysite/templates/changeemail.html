@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Change E-mail<h1>
+
+	<form action="{% url changeemail %}" method="post">{% csrf_token %}
+	<br>
+	<table>
+		{{ form.as_table }}
+	</table>
+	<div class="form-actions">
+	<button type="submit">Change E-mail</button>
+	</div>
+	</form>
+
+{% endblock %}
