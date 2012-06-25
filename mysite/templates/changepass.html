@@ -1,8 +1,10 @@
 {% extends "base.html" %}
 
-{% block content %}
-  <h1>Change Password</h1>
+{% block title %}
+Change Password
+{% endblock %}
 
+{% block content %}
   <form action="" method="post">{% csrf_token %}
 	<table>
       {{ form.as_table }}
