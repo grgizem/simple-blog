@@ -27,6 +27,8 @@ class EntryForm(forms.ModelForm):
 		entry.save()
 
 class ChangeEmailForm(forms.Form):
+	email = forms.EmailField(required = True)
+	
 	class Meta:
 		model = User
 		fields = ("email")
