@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
+{% block title %}
+Login
+{% endblock %}
+
 {% block notification %}
 	{% if form.errors %}
 		Sorry, that's not a valid username or password.
