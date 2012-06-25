@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import patterns, include, url
 from blog.user_view import logout, register, resetpass
-from blog.views import newpost, profile, changeemail, approvement, approve_entry, disapprove_entry
+from blog.views import newpost, profile, changeemail, approvement, approve_entry, disapprove_entry, home
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import admin
 admin.autodiscover()
@@ -12,7 +12,7 @@ urlpatterns = patterns('',
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
+    url(r'^/', home),
     url(r'^admin/', include(admin.site.urls)),
 
     url(r'^accounts/login/$',  'django.contrib.auth.views.login', {'template_name' : 'login.html'}),
