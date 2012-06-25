@@ -1,8 +1,10 @@
 {% extends "base.html" %}
 
-{% block content %}
-  <h1>Change E-mail<h1>
+{% block title %}
+Change E-mail
+{% endblock %}
 
+{% block content %}
 	<form action="{% url changeemail %}" method="post">{% csrf_token %}
 	<br>
 	<table>
