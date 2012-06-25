@@ -4,6 +4,10 @@
 <h2>Entries which are waiting for approvement by you:</h2>
 {% endblock %}
 
+{% block notification %}
+{{ notification }}
+{% endblock %}
+
 {% block content %}
 
         {% for e in entries %}
