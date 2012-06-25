@@ -2,9 +2,9 @@
 
 {% block title %} 
 {% if user.is_anonymous %}
-    <p>Welcome. Please log in ang blogging.</p>
+    <h2>Welcome. Please log in ang blogging.</h2>
 {% else %}
-    <p>Welcome, {{ user.username }}. Thanks for logging in.</p>
+    <h2>Welcome, {{ user.username }}. Thanks for logging in.</h2>
 {% endif %}
 {% endblock %}
 
