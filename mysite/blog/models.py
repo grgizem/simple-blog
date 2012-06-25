@@ -12,11 +12,13 @@ class Entry(models.Model):
 
     def save(self):
         self.edit_date = datetime.datetime.now()
-        self.view_count=self.view_count+1
         super(Entry, self).save()
     
     def approve_entry(self):
 	self.approvement = True
+
+    def viewed(self):
+	self.view_count=self.view_count+1
 
     def __unicode__(self):
         return self.content
