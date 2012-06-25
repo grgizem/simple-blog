@@ -3,9 +3,11 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
 
-from django.template import RequestContext
 from blog.forms import EntryForm, ChangeEmailForm
-from django.shortcuts import render_to_response, redirect
+from blog.models import Entry
+
+from django.template import RequestContext
+from django.shortcuts import render_to_response, redirect, get_object_or_404
 from django.core.mail import send_mail
 
 # add comment:
@@ -52,7 +54,7 @@ def profile(request):
     return render_to_response('profile.html', RequestContext(request))
 
 # approvement page:
-@user_passes_test(lambda u: u.is_superuser())
+@user_passes_test(lambda u: u.is_superuser)
 def approvement(request):
     entries = Entry.objects.filter(approvement=False)
     if entries:
@@ -61,7 +63,7 @@ def approvement(request):
 	return render_to_response('home.html', {'notification' : "There is no entry which is waiting for approvement. Thank you!"})
 
 # approving an entry:
-@user_passes_test(lambda u: u.is_superuser())
+@user_passes_test(lambda u: u.is_superuser)
 def approve_entry(request,entry_id):
     entry = get_object_or_404(Entry, id=entry_id)
     entry.approve_entry()
@@ -73,7 +75,7 @@ def approve_entry(request,entry_id):
     return render_to_response('approve.html', ctx, RequestContext(request))
 
 # disapproving an entry:
-@user_passes_test(lambda u: u.is_superuser())
+@user_passes_test(lambda u: u.is_superuser)
 def disapprove_entry(request,entry_id):
     entry = get_object_or_404(Entry, id=entry_id)
     send_mail('Blog entry deleted', 'Dear Blogger, your item is deleted, because it found inappropriate. Your post was %s'%entry.content, 'grgizem@gmail.com', [request.user.email], fail_silently=False)
