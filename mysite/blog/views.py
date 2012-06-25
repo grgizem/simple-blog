@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import user_passes_test
 from django.template import RequestContext
 from blog.forms import EntryForm, ChangeEmailForm
 from django.shortcuts import render_to_response, redirect
+from django.core.mail import send_mail
 
 # add comment:
 @login_required
