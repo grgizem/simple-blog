@@ -1,10 +1,18 @@
 {% extends "base.html" %}
 
+{% block title %} 
+{% if user.is_anonymous %}
+    <p>Welcome. Please log in ang blogging.</p>
+{% else %}
+    <p>Welcome, {{ user.username }}. Thanks for logging in.</p>
+{% endif %}
+{% endblock %}
+
 {% block notification %}
 {{ notification }}
 {% endblock %}
 
-	{% block content %}
+{% block content %}
             <div class="span8">
               <h2>Heading</h2>
               <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
@@ -17,4 +25,4 @@
               <h2>Heading</h2>
               <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
             </div><!--/span-->
-	{% endblock %}
+{% endblock %}

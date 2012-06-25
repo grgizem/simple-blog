@@ -66,11 +66,7 @@
 
         <div class="span9">
           <div class="hero-unit">
-		{% if user.is_authenticated %}
-			<p>Welcome, {{ user.username }}.</p>
-		{% else %}
-  			<p>Welcome. If you have an account, please log in. Otherwise you can easily register and start blogging.</p>
-		{% endif %}
+	{% block title %}{% endblock %}
 		<div class="error">{% block notification %}{% endblock %}</div>
           </div>
           	{% block content %}{% endblock %}
