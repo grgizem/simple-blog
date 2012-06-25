@@ -11,7 +11,7 @@ from django.shortcuts import render_to_response, redirect, get_object_or_404
 from django.core.mail import send_mail
 
 # home page:
-def home:
+def home(request):
     obj_list = Entry.objects.all().order_by("-view_count")
     return render_to_response('home.html', {'entries' : obj_list[:5]}, RequestContext(request))
 

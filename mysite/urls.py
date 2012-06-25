@@ -12,7 +12,7 @@ urlpatterns = patterns('',
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-    url(r'^/', home),
+    url(r'^$', home),
     url(r'^admin/', include(admin.site.urls)),
 
     url(r'^accounts/login/$',  'django.contrib.auth.views.login', {'template_name' : 'login.html'}),
