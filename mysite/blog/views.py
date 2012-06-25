@@ -1,6 +1,7 @@
 from django.http import HttpResponseRedirect
 
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import user_passes_test
 
 from django.template import RequestContext
 from blog.forms import EntryForm, ChangeEmailForm
@@ -25,7 +26,7 @@ def newpost(request):
 @login_required
 def changepass(request):
     ctx = {
-	  'notfication' : "Your password successfuly changed."
+	  'notification' : "Your password successfuly changed."
 	  }
     return render_to_response('home.html', ctx, RequestContext(request))
 
@@ -48,3 +49,14 @@ def changeemail(request):
 @login_required
 def profile(request):
     return render_to_response('profile.html', RequestContext(request))
+
+# approvement page:
+@user_passes_test(lambda u: u.is_superuser())
+def approvement(request):
+    entries = Entry.objects.filter(approvement=False)
+    if entries:
+	return render_to_response('approve.html', {'entries' : entries}, RequestContext(request))
+    else:
+	return render_to_response('home.html', {'notification' : "There is no entry which is waiting for approvement. Thank you!"})
+
+
