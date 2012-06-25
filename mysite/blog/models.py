@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 import datetime
 
 class Entry(models.Model):
-    content = models.CharField(max_length=1000)
+    content = models.CharField(max_length=3000)
     pub_date = models.DateTimeField(auto_now_add=True)
     edit_date = models.DateTimeField(auto_now_add=True)
     view_count = models.IntegerField(editable=False,default=0)

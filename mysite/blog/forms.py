@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from blog.models import Entry
+from django.forms import ModelForm, Textarea
 
 class NewUserCreationForm(UserCreationForm):
 	email = forms.EmailField(required = True)
@@ -17,11 +18,11 @@ class NewUserCreationForm(UserCreationForm):
 			user.save()
 		return user
 
-class EntryForm(forms.ModelForm):
+class EntryForm(ModelForm):
 	class Meta:
 		model = Entry
 		exclude = ["pub_date","edit_date","view_count","author","approvement"]
-	
+		widgets = {'content' : Textarea(attrs={'cols':100,'rows':20}),}
 	def save(self,request):
 		entry = Entry(content = self.cleaned_data["content"], author = request.user)
 		entry.save()
