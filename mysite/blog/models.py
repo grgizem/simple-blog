@@ -16,6 +16,7 @@ class Entry(models.Model):
     
     def approve_entry(self):
 	self.approvement = True
+	super(Entry, self).save()
 
     def viewed(self):
 	self.view_count=self.view_count+1
