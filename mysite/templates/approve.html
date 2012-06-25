@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}
+<h2>Entries which are waiting for approvement by you:</h2>
+{% endblock %}
+
+{% block content %}
+
+        {% for e in entries %}
+            <div class="span9">
+              <p>{{ forloop.counter }}.  {{ e.content }}</p>
+              <p><h6 class="pull-right">, {{ e.date }}</h6><p>
+
+		<a href="/approve/entry/{{ e.id }}/"><button class="btn">Approve</button></a>
+		<a href="/disapprove/entry/{{ e.id }}/"><button class="btn">Disapprove</button></a>
+
+	    </div><!--/span-->
+	{% endfor %}
+
+{% endblock %}
