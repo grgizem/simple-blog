@@ -7,7 +7,9 @@
 	<form action="{% url newpost %}" method="POST">
 	{% csrf_token %}
             <table>
+	<div class="input-xlarge">
               {{ form.as_table }}
+	</div>
             </table>
 	<div class="form-actions">
       	<button type="submit">Post</button>
