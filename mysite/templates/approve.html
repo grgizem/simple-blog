@@ -8,12 +8,11 @@
 
         {% for e in entries %}
             <div class="span9">
-              <p>{{ forloop.counter }}.  {{ e.content }}</p>
-              <p><h6 class="pull-right">, {{ e.date }}</h6><p>
-
+      		<pre>{{ e.content }}</pre>
+	      <div class="form-actions">
 		<a href="/approve/entry/{{ e.id }}/"><button class="btn">Approve</button></a>
 		<a href="/disapprove/entry/{{ e.id }}/"><button class="btn">Disapprove</button></a>
-
+	      </div>
 	    </div><!--/span-->
 	{% endfor %}
 
