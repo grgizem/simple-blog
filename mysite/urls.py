@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import patterns, include, url
 from blog.user_view import logout, register, resetpass
-from blog.views import newpost, profile, changeemail, approvement, approve_entry, disapprove_entry, home
+from blog.views import newpost, profile, changeemail, approvement, approve_entry, disapprove_entry, home, edit, delete
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import admin
 admin.autodiscover()
@@ -29,6 +29,8 @@ urlpatterns = patterns('',
     url(r'^disapprove/entry/(?P<entry_id>\d+)/$', disapprove_entry, name="disapprove_entry"),
 
     url(r'^newpost/$', newpost, name="newpost"),
+    url(r'^edit/(?P<entry_id>\d+)/$', edit, name="edit"),
+    url(r'^delete/(?P<entry_id>\d+)\$', delete, name="delete"),
     
 )
 urlpatterns += staticfiles_urlpatterns()
