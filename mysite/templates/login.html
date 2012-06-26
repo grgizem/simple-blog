@@ -4,12 +4,6 @@
 <h2>Login</h2>
 {% endblock %}
 
-{% block notification %}
-	{% if form.errors %}
-		Sorry, that's not a valid username or password.
-	{% endif %}
-{% endblock %}
-
 {% block content %}
 
   <form action='.' method='post'> {% csrf_token %}
