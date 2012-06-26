@@ -13,7 +13,7 @@ from django.core.mail import send_mail
 
 # home page:
 def home(request):
-    obj_list = Entry.objects.all().order_by("-view_count")
+    obj_list = Entry.objects.filter(approvement=True).order_by("-view_count")
     return render_to_response('home.html', {'entries' : obj_list[:5]}, RequestContext(request))
 
 # add comment:

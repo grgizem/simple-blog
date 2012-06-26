@@ -9,5 +9,5 @@ class EntryAdmin(admin.ModelAdmin):
 	list_display = ['title','author','approvement']
 	ordering = ['title']
 	actions = [approve]
-
+	
 admin.site.register(Entry,EntryAdmin)

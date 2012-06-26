@@ -24,7 +24,7 @@ class EntryForm(ModelForm):
 		exclude = ["pub_date","edit_date","view_count","author","approvement"]
 		widgets = {'content' : Textarea(attrs={'cols':100,'rows':20}),}
 	def save(self,request):
-		entry = Entry(content = self.cleaned_data["content"], author = request.user)
+		entry = Entry(title = self.cleaned_data["title"], content = self.cleaned_data["content"], author = request.user)
 		entry.save()
 
 class ChangeEmailForm(forms.Form):

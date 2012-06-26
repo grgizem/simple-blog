@@ -19,7 +19,7 @@ class Entry(models.Model):
 	self.view_count=self.view_count+1
 
     def __unicode__(self):
-        return self.content
+        return self.title
 
     class Meta:
         ordering = ["view_count"]
