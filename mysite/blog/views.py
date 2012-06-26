@@ -66,7 +66,7 @@ def approvement(request):
     if entries:
 	return render_to_response('approve.html', {'entries' : entries}, RequestContext(request))
     else:
-	messages.info(request, 'There is no entry which is waiting for approvement.')
+	messages.add_message(request, messages.INFO,'There is no entry which is waiting for approvement.')
 	return redirect('home', RequestContext(request))
 
 # approving an entry:
