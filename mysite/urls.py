@@ -21,14 +21,14 @@ urlpatterns = patterns('',
 
     url(r'^accounts/changepass/$', 'django.contrib.auth.views.password_change', {'template_name' : 'changepass.html'}),
     url(r'^password_change/done/$', 'django.contrib.auth.views.password_change_done', {'template_name' : 'profile.html'}),
-    url(r'^accounts/changeemail/$', changeemail, name='changeemail'),
+    url(r'^accounts/changeemail/$', changeemail, name="changeemail"),
     url(r'^accounts/profile/$', profile),
 
     url(r'^approve/$', approvement),
-    url(r'^approve/entry/(?P<entry_id>\d+)/', approve_entry, name='approve_entry'),
-    url(r'^disapprove/entry/(?P<entry_id>\d+)/', disapprove_entry, name='dissapprove_entry'),
+    url(r'^approve_entry/(?P<entry_id>\d+)/$', approve_entry, name="approve_entry"),
+    url(r'^disapprove_entry/(?P<entry_id>\d+)/$', disapprove_entry, name="disapprove_entry"),
 
-    url(r'^newpost/$', newpost, name='newpost'),
+    url(r'^newpost/$', newpost, name="newpost"),
     
 )
 urlpatterns += staticfiles_urlpatterns()
