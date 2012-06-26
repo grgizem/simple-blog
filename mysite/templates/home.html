@@ -13,8 +13,8 @@
             <div class="span9">
               <pre> {{ e.content }}</pre>
 	    <div class="form-actions">
-		<a href=#><button class="btn">Edit</button></a>
-		<a href=#><button class="btn">Delete</button></a>
+		<a href="{% url edit e.id %}"><button class="btn">Edit</button></a>
+		<a href="{% url delete e.id %}"><button class="btn">Delete</button></a>
 	    </div>
             </div><!--/span-->
 	{% endfor %}
