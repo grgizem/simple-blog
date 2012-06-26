@@ -67,7 +67,7 @@ def approvement(request):
 	return render_to_response('approve.html', {'entries' : entries}, RequestContext(request))
     else:
 	messages.add_message(request, messages.INFO,'There is no entry which is waiting for approvement.')
-	return redirect('home', RequestContext(request))
+	return HttpResponseRedirect('/')
 
 # approving an entry:
 @user_passes_test(lambda u: u.is_superuser)
