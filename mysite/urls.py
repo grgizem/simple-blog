@@ -25,8 +25,8 @@ urlpatterns = patterns('',
     url(r'^accounts/profile/$', profile),
 
     url(r'^approve/$', approvement),
-    url(r'^approve_entry/(?P<entry_id>\d+)/$', approve_entry, name="approve_entry"),
-    url(r'^disapprove_entry/(?P<entry_id>\d+)/$', disapprove_entry, name="disapprove_entry"),
+    url(r'^approve/entry/(?P<entry_id>\d+)/$', approve_entry, name="approve_entry"),
+    url(r'^disapprove/entry/(?P<entry_id>\d+)/$', disapprove_entry, name="disapprove_entry"),
 
     url(r'^newpost/$', newpost, name="newpost"),
     
