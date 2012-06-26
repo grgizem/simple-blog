@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import user_passes_test
 from blog.forms import EntryForm, ChangeEmailForm
 from blog.models import Entry
 
+from django.contrib import messages
 from django.template import RequestContext
 from django.shortcuts import render_to_response, redirect, get_object_or_404
 from django.core.mail import send_mail
@@ -65,7 +66,8 @@ def approvement(request):
     if entries:
 	return render_to_response('approve.html', {'entries' : entries}, RequestContext(request))
     else:
-	return render_to_response('home.html', {'notification' : "There is no entry which is waiting for approvement. Thank you!"},RequestContext(request))
+	messages.info(request, 'There is no entry which is waiting for approvement.')
+	return redirect('home', RequestContext(request))
 
 # approving an entry:
 @user_passes_test(lambda u: u.is_superuser)
