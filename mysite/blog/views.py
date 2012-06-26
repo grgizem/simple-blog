@@ -98,3 +98,15 @@ def edit(request,entry_id):
     else:
         messages.add_message(request, messages.ERROR, 'You can not edit this post, because you are not the author of it.')
         return HttpResponseRedirect('/')
+
+# delete an entry:
+@login_required
+def delete(request,entry_id):
+    e = get_object_or_404(Entry, id=entry_id)
+    if request.user.id == e.author.id:
+    	e.delete()
+	messages.add_message(request, messages.SUCCESS, 'Your post deleted.')
+    	return HttpResponseRedirect('/')
+    else:
+	message.add_message(request, messages.ERROR, 'You can not delete this post, because you are not the author of it.')
+	return HttpResponseRedirect('/')
