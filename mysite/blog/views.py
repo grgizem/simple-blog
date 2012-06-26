@@ -22,7 +22,7 @@ def newpost(request):
     if request.POST:
         entryform = EntryForm(request.POST)
         if entryform.is_valid():
-            e = entryform.save(request)
+            entryform.save(request)
 	    messages.add_message(request, messages.WARNING, 'Your post is waiting to approve by admin.')
 	    return render_to_response('home.html', RequestContext(request))
     else:
@@ -33,7 +33,7 @@ def newpost(request):
 @login_required
 def changepass(request):
     messages.add_message(request, messages.SUCCESS, 'Your password successfuly changed.')
-    return render_to_response('home.html', RequestContext(request))
+    return HttpResponseRedirect('/')
 
 # change email:
 @login_required
@@ -41,9 +41,9 @@ def changeemail(request):
     if request.POST:
 	emailform = ChangeEmailForm(request.POST)
 	if emailform.is_valid():
-	    e = emailform.save(request)
+	    emailform.save(request)
 	    messages.add_message(request, messages.SUCCESS, 'Your e-mail successfuly changed.')
-	    return render_to_response('home.html', RequestContext(request))
+	    return HttpResponseRedirect('/')
     else:
 	emailform = ChangeEmailForm()
 	return render_to_response('changeemail.html', {'form' : emailform}, RequestContext(request))
@@ -69,11 +69,8 @@ def approve_entry(request,entry_id):
     entry = get_object_or_404(Entry, id=entry_id)
     entry.approve_entry()
     entries = Entry.objects.filter(approvement=False)
-    ctx = {
-	'entries' : entries
-	}
     messages.add_message(request, messages.SUCCESS, 'Entry approved')
-    return render_to_response('approve.html', ctx, RequestContext(request))
+    return render_to_response('approve.html', {'entries' : entries}, RequestContext(request))
 
 # disapproving an entry:
 @user_passes_test(lambda u: u.is_superuser)
@@ -81,8 +78,23 @@ def disapprove_entry(request,entry_id):
     entry = get_object_or_404(Entry, id=entry_id)
     entry.delete()
     entries = Entry.objects.filter(approvement=False)
-    ctx = {
-	'entries' : entries
-	}
     messages.add_message(request, messages.SUCCESS, 'Entry deleted. Regarding mail sent to the author of the entry to inform.')
-    return render_to_response('approve.html', ctx, RequestContext(request))
+    return render_to_response('approve.html', {'entries' : entries}, RequestContext(request))
+
+# edit an entry:
+@login_required
+def edit(request,entry_id):
+    e = get_object_or_404(Entry, id=entry_id)
+    if request.user.id == e.author.id:
+        if request.POST:
+            entryform = EntryForm(request.POST)
+            if entryform.is_valid():
+		entryform.save(request)
+		messages.add_message(request, messages.WARNING, 'Your post is waiting for approvement.')
+                return HttpResponseRedirect('/')
+        else:
+            entryform = EntryForm({'title' : e.title, 'content' : e.content})
+            return render_to_response('edit.html', {'form' : entryform}, RequestContext(request))
+    else:
+        messages.add_message(request, messages.ERROR, 'You can not edit this post, because you are not the author of it.')
+        return HttpResponseRedirect('/')
