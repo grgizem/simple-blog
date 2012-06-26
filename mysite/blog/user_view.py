@@ -21,12 +21,11 @@ def register(request):
     if request.method == 'POST':
 	form = NewUserCreationForm(request.POST)
 	if form.is_valid():
-            new_user = form.save()
+            form.save()
             return HttpResponseRedirect("/")
     else:
         form = NewUserCreationForm()
-    return render_to_response("register.html",
-            {'form':form},RequestContext(request))
+    return render_to_response("register.html", {'form':form}, RequestContext(request))
 
 # reset password:
 def resetpass(request, template_name):
