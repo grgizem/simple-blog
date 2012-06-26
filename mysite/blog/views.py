@@ -65,7 +65,7 @@ def approvement(request):
     if entries:
 	return render_to_response('approve.html', {'entries' : entries}, RequestContext(request))
     else:
-	return render_to_response('home.html', {'notification' : "There is no entry which is waiting for approvement. Thank you!"})
+	return render_to_response('home.html', {'notification' : "There is no entry which is waiting for approvement. Thank you!"},RequestContext(request))
 
 # approving an entry:
 @user_passes_test(lambda u: u.is_superuser)
