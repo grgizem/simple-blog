@@ -12,10 +12,12 @@
 	{% for e in entries %}
             <div class="span9">
               <pre> {{ e.content }}</pre>
+	{% if user.id == e.author.id %}
 	    <div class="form-actions">
 		<a href="{% url edit e.id %}"><button class="btn">Edit</button></a>
 		<a href="{% url delete e.id %}"><button class="btn">Delete</button></a>
 	    </div>
+	{% endif %}
             </div><!--/span-->
 	{% endfor %}
 {% endblock %}

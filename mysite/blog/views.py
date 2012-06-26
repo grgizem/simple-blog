@@ -89,12 +89,12 @@ def edit(request,entry_id):
         if request.POST:
             entryform = EntryForm(request.POST)
             if entryform.is_valid():
-		entryform.save(request)
+		entryform.save_as(request,e)
 		messages.add_message(request, messages.WARNING, 'Your post is waiting for approvement.')
                 return HttpResponseRedirect('/')
         else:
             entryform = EntryForm({'title' : e.title, 'content' : e.content})
-            return render_to_response('edit.html', {'form' : entryform}, RequestContext(request))
+            return render_to_response('edit.html', {'entry_id' : entry_id, 'form' : entryform}, RequestContext(request))
     else:
         messages.add_message(request, messages.ERROR, 'You can not edit this post, because you are not the author of it.')
         return HttpResponseRedirect('/')

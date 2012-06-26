@@ -26,7 +26,11 @@ class EntryForm(ModelForm):
 	def save(self,request):
 		entry = Entry(title = self.cleaned_data["title"], content = self.cleaned_data["content"], author = request.user)
 		entry.save()
-
+	def save_as(self,request,entry):
+		entry.title = self.cleaned_data["title"]
+		entry.content = self.cleaned_data["content"]
+		entry.approvement = False
+		entry.save()
 class ChangeEmailForm(forms.Form):
 	email = forms.EmailField(required = True)
 	
