@@ -23,10 +23,8 @@ def newpost(request):
         entryform = EntryForm(request.POST)
         if entryform.is_valid():
             e = entryform.save(request)
-	    ctx = {
-		  'notification' : "Your post is waiting to approve by admin."
-		  }
-	    return render_to_response('home.html', ctx, RequestContext(request))
+	    messages.add_message(request, messages.WARNING, 'Your post is waiting to approve by admin.')
+	    return render_to_response('home.html', RequestContext(request))
     else:
         entryform = EntryForm()
 	return render_to_response('post.html', {'form' : entryform}, RequestContext(request))
@@ -34,10 +32,8 @@ def newpost(request):
 # change password redrirection:
 @login_required
 def changepass(request):
-    ctx = {
-	  'notification' : "Your password successfuly changed."
-	  }
-    return render_to_response('home.html', ctx, RequestContext(request))
+    messages.add_message(request, messages.SUCCESS, 'Your password successfuly changed.')
+    return render_to_response('home.html', RequestContext(request))
 
 # change email:
 @login_required
@@ -46,10 +42,8 @@ def changeemail(request):
 	emailform = ChangeEmailForm(request.POST)
 	if emailform.is_valid():
 	    e = emailform.save(request)
-	    ctx = {
-		  'notification' : "Your e-mail successfuly changed."
-		  }
-	    return render_to_response('home.html', ctx, RequestContext(request))
+	    messages.add_message(request, messages.SUCCESS, 'Your e-mail successfuly changed.')
+	    return render_to_response('home.html', RequestContext(request))
     else:
 	emailform = ChangeEmailForm()
 	return render_to_response('changeemail.html', {'form' : emailform}, RequestContext(request))
@@ -76,9 +70,9 @@ def approve_entry(request,entry_id):
     entry.approve_entry()
     entries = Entry.objects.filter(approvement=False)
     ctx = {
-	'entries' : entries,
-	'notification' : "Entry approved."
+	'entries' : entries
 	}
+    messages.add_message(request, messages.SUCCESS, 'Entry approved')
     return render_to_response('approve.html', ctx, RequestContext(request))
 
 # disapproving an entry:
@@ -89,7 +83,7 @@ def disapprove_entry(request,entry_id):
     entry.delete()
     entries = Entry.objects.filter(approvement=False)
     ctx = {
-	'entries' : entries,
-	'notification' : "Entry deleted and mail sent to the author of the entry."
+	'entries' : entries
 	}
+    messages.add_message(request, mesaages.SUCCESS, 'Entry deleted. Regarding mail sent to the author of the entry to inform.')
     return render_to_response('approve.html', ctx, RequestContext(request))
