@@ -14,8 +14,8 @@
 
 {% block content %}
 	{% for e in entries %}
-            <div class="span8">
-              <p><b>{{ e.author.username }}</b> : {{ e.content }}</p>
+            <div class="span9">
+              <p><pre class="prettyprint linenums"> {{ e.content }}</pre></p>
             </div><!--/span-->
 	{% endfor %}
 {% endblock %}
