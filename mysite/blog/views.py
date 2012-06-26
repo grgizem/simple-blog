@@ -79,11 +79,10 @@ def approve_entry(request,entry_id):
 @user_passes_test(lambda u: u.is_superuser)
 def disapprove_entry(request,entry_id):
     entry = get_object_or_404(Entry, id=entry_id)
-    send_mail('Blog entry deleted', 'Dear Blogger, your item is deleted, because it found inappropriate. Your post was %s'%entry.content, 'grgizem@gmail.com', [request.user.email], fail_silently=False)
     entry.delete()
     entries = Entry.objects.filter(approvement=False)
     ctx = {
 	'entries' : entries
 	}
-    messages.add_message(request, mesaages.SUCCESS, 'Entry deleted. Regarding mail sent to the author of the entry to inform.')
+    messages.add_message(request, messages.SUCCESS, 'Entry deleted. Regarding mail sent to the author of the entry to inform.')
     return render_to_response('approve.html', ctx, RequestContext(request))
