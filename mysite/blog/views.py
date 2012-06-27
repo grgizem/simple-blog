@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import user_passes_test
 from blog.forms import EntryForm, ChangeEmailForm
 from blog.models import Entry
 
+from django.core.paginator import Paginator, EmptyPage, InvalidPage
 from django.contrib import messages
 from django.template import RequestContext
 from django.shortcuts import render_to_response, redirect, get_object_or_404
@@ -14,7 +15,16 @@ from django.core.mail import send_mail
 # home page:
 def home(request):
     obj_list = Entry.objects.filter(approvement=True).order_by("-view_count")
-    return render_to_response('home.html', {'entries' : obj_list[:5]}, RequestContext(request))
+    paginator = Paginator(obj_list, 5)
+    try:
+	page = int(request.GET.get('page','1'))
+    except ValueError:
+	page = 1
+    try:
+	entries = paginator.page(page)
+    except (EmptyPage,InvalidPage):
+	entries = paginator.page(paginator.num_pages)
+    return render_to_response('home.html', {'entries' : entries} , RequestContext(request))
 
 # add comment:
 @login_required
