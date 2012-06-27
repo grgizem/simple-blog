@@ -2,4 +2,7 @@
 *.pot
 *.pyc
 *~
+settings.py
+*.js
+*.css
 local_settings.py
