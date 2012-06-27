@@ -35,5 +35,5 @@ urlpatterns = patterns('',
 )
 urlpatterns += staticfiles_urlpatterns()
 
-handler404 = 'blog.error_view.404_view'
-handler500 = 'blog.error_view.500_view'
+handler404 = 'blog.error_view.error_404'
+handler500 = 'blog.error_view.error_500'
