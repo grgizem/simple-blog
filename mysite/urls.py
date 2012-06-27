@@ -33,7 +33,11 @@ urlpatterns = patterns('',
     url(r'^delete/(?P<entry_id>\d+)\$', delete, name="delete"),
     
 )
-urlpatterns += staticfiles_urlpatterns()
+#urlpatterns += staticfiles_urlpatterns()
+
+urlpatterns+= patterns('',
+	(r'^static/(?P<path>.*)$', 'django.views.static.serve',
+		{'document_root': "/home/gizem/Documents/blog/projects/simple-blog/mysite/static/"}))
 
 handler404 = 'blog.error_view.error_404'
 handler500 = 'blog.error_view.error_500'
