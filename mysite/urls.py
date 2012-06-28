@@ -23,7 +23,7 @@ urlpatterns = patterns('',
     url(r'^password_change/done/$', 'django.contrib.auth.views.password_change_done', {'template_name' : 'profile.html'}),
     url(r'^accounts/changeemail/$', changeemail, name="changeemail"),
     url(r'^accounts/profile/$', profile),
-    url(r'^confirm/(?P<activation_key>+)/$', confirm, name="confirm"),
+    url(r'^confirm/(?P<activation_key>\w+)/$', confirm, name="confirm"),
 
     url(r'^approve/$', approvement),
     url(r'^approve/entry/(?P<entry_id>\d+)/$', approve_entry, name="approve_entry"),
