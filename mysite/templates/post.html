@@ -1,19 +1,19 @@
 {% extends "base.html" %}
 
 {% block title %} 
-{{e.title}}
+<h2>{{entry.title}}</h2>
 {% endblock %}
 
 {% block content %}
 
             <div class="span9">
-              <pre> {{ e.content }}</pre>
+              <pre> {{ entry.content }}</pre>
 	    <div class="form-actions">
-		<h5><b>Author:</b> {{ e.author.username }}<br><b>Date:</b> {{ e.pub_date }} edited at {{ e.edit_date }}<h5>
-	{% if user.id == e.author.id %}
+		<h5><b>Author:</b> {{ entry.author.username }}<br><b>Date:</b> {{ entry.pub_date }} edited at {{ entry.edit_date }}</h5>
+	{% if user.id == entry.author.id %}
 	<div class="pull-right">
-		<a href="{% url edit e.id %}"><button class="btn">Edit</button></a>
-		<a href="{% url delete e.id %}"><button class="btn">Delete</button></a>
+		<a href="{% url edit entry.id %}"><button class="btn">Edit</button></a>
+		<a href="{% url delete entry.id %}"><button class="btn">Delete</button></a>
 	</div>
 	{% endif %}
 	    </div>

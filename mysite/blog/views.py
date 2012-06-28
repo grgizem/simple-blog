@@ -37,7 +37,7 @@ def newpost(request):
 	    return render_to_response('home.html', RequestContext(request))
     else:
         entryform = EntryForm()
-	return render_to_response('post.html', {'form' : entryform}, RequestContext(request))
+	return render_to_response('newpost.html', {'form' : entryform}, RequestContext(request))
 
 # change password redrirection:
 @login_required

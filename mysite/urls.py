@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import patterns, include, url
 from blog.user_view import logout, register, resetpass
-from blog.views import newpost, profile, changeemail, approvement, approve_entry, disapprove_entry, home, edit, delete
+from blog.views import newpost, profile, changeemail, approvement, approve_entry, disapprove_entry, home, edit, delete, post
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import admin
 admin.autodiscover()

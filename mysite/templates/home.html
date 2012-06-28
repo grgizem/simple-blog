@@ -13,9 +13,9 @@
 
 	{% for e in entries.object_list %}
             <div class="span9">
-              <pre> <b>{{ e.title }}</b><br>{{ e.content|truncatewords_html:"60" }}</pre>
+              <pre><b><h4>{{ e.title }}</h4></b><br>{{ e.content|truncatewords_html:"60" }}</pre>
 	    <div class="form-actions">
-		<h5><b>Author:</b> {{ e.author.username }}<br><b>Date:</b> {{ e.pub_date }} edited at {{ e.edit_date }}<h5>
+		<h5><b>Author:</b> {{ e.author.username }}<br><b>Date:</b> {{ e.pub_date }} edited at {{ e.edit_date }}</h5>
 	<div class="pull-right">
 	<a href="{% url post e.id %}" class="btn btn-primary">Learn More</a>
 	{% if user.id == e.author.id %}
