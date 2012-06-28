@@ -7,8 +7,11 @@ from django.contrib.auth.decorators import login_required
 
 from django.template import RequestContext
 from blog.forms import NewUserCreationForm
+from blog.models import UserProfile
+import datetime
+from django.contrib import messages
 
-from django.shortcuts import render_to_response, redirect
+from django.shortcuts import render_to_response, redirect, get_object_or_404
 
 # user logout:
 @login_required
@@ -30,3 +33,15 @@ def register(request):
 # reset password:
 def resetpass(request, template_name):
     return password_reset(request, template_name)
+
+# new user confirmation:
+def confirm(request,activation_key):
+    user_profile = get_object_or_404(UserProfile, activation_key=activation_key)
+    if user_profile.key_expires < datetime.datetime.today():
+	messages.add_message(request, messages.ERROR, 'Your activation key expired, please send an email to more information and help to blog@blog.com')
+	return HttpResponseRedirect('/')
+    user_account = user_profile.user
+    user_account.is_active = True
+    user_account.save()
+    messages.add_message(request, messages.SUCCESS, 'Your account activated. You can login now.')
+    return HttpResponseRedirect('/')
