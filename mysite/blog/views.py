@@ -120,3 +120,10 @@ def delete(request,entry_id):
     else:
 	message.add_message(request, messages.ERROR, 'You can not delete this post, because you are not the author of it.')
 	return HttpResponseRedirect('/')
+
+# show an entry:
+@login_required
+def post(request,entry_id):
+    e = get_object_or_404(Entry, id=entry_id)
+    e.viewed()
+    return render_to_response('post.html', {'entry' : e}, RequestContext(request))
