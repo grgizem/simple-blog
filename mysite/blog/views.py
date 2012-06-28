@@ -86,6 +86,7 @@ def approve_entry(request,entry_id):
 @user_passes_test(lambda u: u.is_superuser)
 def disapprove_entry(request,entry_id):
     entry = get_object_or_404(Entry, id=entry_id)
+    send_mail('Simple Blog', 'Your following post is disapproved, because it found inappropriate.\nPost: %s'%entry.content, 'blog@blog.com', [entry.author.email], fail_silently=False)
     entry.delete()
     entries = Entry.objects.filter(approvement=False)
     messages.add_message(request, messages.SUCCESS, 'Entry deleted. Regarding mail sent to the author of the entry to inform.')

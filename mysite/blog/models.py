@@ -17,6 +17,7 @@ class Entry(models.Model):
 
     def viewed(self):
 	self.view_count=self.view_count+1
+	super(Entry, self).save()
 
     def __unicode__(self):
         return self.title
