@@ -25,3 +25,8 @@ class Entry(models.Model):
     class Meta:
         ordering = ["view_count"]
         verbose_name_plural = "Entries"
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User)
+    activation_key = models.CharField(maxlength=40)
+    key_expires = models.DateTimeField()
