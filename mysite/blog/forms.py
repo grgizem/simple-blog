@@ -13,7 +13,7 @@ class NewUserCreationForm(UserCreationForm):
 
 	def save(self):
         	user = User.objects.create_user(self.cleaned_data["username"],self.cleaned_data["email"],self.cleaned_data["password1"])
-		user.is_active()=False
+		user.is_active=False
 		user.save()
 		# Activation properties
 		salt = sha.new(str(random.random())).hexdigest()[:5]
