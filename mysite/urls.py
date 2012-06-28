@@ -30,8 +30,8 @@ urlpatterns = patterns('',
 
     url(r'^newpost/$', newpost, name="newpost"),
     url(r'^edit/(?P<entry_id>\d+)/$', edit, name="edit"),
-    url(r'^delete/(?P<entry_id>\d+)\$', delete, name="delete"),
-    
+    url(r'^delete/(?P<entry_id>\d+)/$', delete, name="delete"),
+    url(r'^post/(?P<entry_id>\d+)/$', post, name="post"),    
 )
 #urlpatterns += staticfiles_urlpatterns()
 
