@@ -1,8 +1,10 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from blog.models import Entry
+from blog.models import Entry, UserProfile
 from django.forms import ModelForm, Textarea
+from django.core.mail import send_mail
+import datetime, random, sha
 
 class NewUserCreationForm(UserCreationForm):
 	email = forms.EmailField(required = True)
@@ -23,8 +25,8 @@ class NewUserCreationForm(UserCreationForm):
 		new_user.save()
 		# sending an activation email
 		email_subject = 'Your new account confirmation'
-		email_body = 'Hello, %s, and thanks for registering for the blog \n To active your account, click following link within 48 hours: \n http://localhost:8000/accounts/confirm/%s' %(user.username, new_profile.activation_key)
-		send_email(email_subject, email_body, 'blog@blog.com', [user.email])
+		email_body = 'Hello, %s, and thanks for registering for the blog \n To active your account, click following link within 48 hours: \n http://localhost:8000/confirm/%s' %(user.username, new_user.activation_key)
+		send_mail(email_subject, email_body, 'blog@blog.com', [user.email])
 
 class EntryForm(ModelForm):
 	class Meta:
