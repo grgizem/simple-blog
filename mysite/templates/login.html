@@ -5,6 +5,13 @@
 {% endblock %}
 
 {% block content %}
+  {% if form.errors %}
+	<div class="alert alert-info">
+		<ul>
+		<li>Your username and password did not match. Please try again.</li>
+		</ul>
+	</div>
+  {% endif %}
 
   <form action='.' method='post'> {% csrf_token %}
     <label for="username">User name:</label>
