@@ -8,10 +8,22 @@ from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from blog.forms import NewUserCreationForm
 from blog.models import UserProfile
+from django.contrib.auth.models import User
+
 import datetime
 from django.contrib import messages
 
 from django.shortcuts import render_to_response, redirect, get_object_or_404
+
+# disabling account:
+@login_required
+def disable(request):
+    user_account = get_object_or_404(User,id=request.user.id)
+    user_account.is_active = False
+    auth_logout(request)
+    user_account.save()
+    messages.add_message(request, messages.SUCCESS, 'You account has been disabled. To activate you account send an email to admin.')
+    return HttpResponseRedirect("/")
 
 # user logout:
 @login_required
