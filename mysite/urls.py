@@ -1,5 +1,5 @@
 from django.conf.urls.defaults import patterns, include, url
-from blog.user_view import logout, register, resetpass, confirm
+from blog.user_view import logout, register, resetpass, confirm, login
 from blog.views import newpost, profile, changeemail, approvement, approve_entry, disapprove_entry, home, edit, delete, post
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import admin
@@ -15,7 +15,7 @@ urlpatterns = patterns('',
     url(r'^$', home),
     url(r'^admin/', include(admin.site.urls)),
 
-    url(r'^accounts/login/$',  'django.contrib.auth.views.login', {'template_name' : 'login.html'}),
+    url(r'^accounts/login/$',  login),
     url(r'^accounts/logout/$', logout),
     url(r'^accounts/register/$', register),
 
