@@ -25,10 +25,10 @@ def register(request):
 	form = NewUserCreationForm(request.POST)
 	if form.is_valid():
             form.save()
+	    messages.add_message(request, messages.SUCCESS, 'The activation mail sent. Please check your inbox.')
             return HttpResponseRedirect("/")
     else:
         form = NewUserCreationForm()
-    messages.add_message(request, messages.SUCCESS, 'The activation mail sent. Please chech your inbox.')
     return render_to_response("register.html", {'form':form}, RequestContext(request))
 
 # reset password:
