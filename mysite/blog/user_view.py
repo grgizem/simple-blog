@@ -1,6 +1,5 @@
 from django.http import HttpResponseRedirect
 
-from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.views import password_reset
 
@@ -13,12 +12,6 @@ import datetime
 from django.contrib import messages
 
 from django.shortcuts import render_to_response, redirect, get_object_or_404
-
-
-# user login:
-def login(request):
-    auth_login(request,{'template_name' : 'login.html'})
-    return HttpResponseRedirect("/")
 
 # user logout:
 @login_required
