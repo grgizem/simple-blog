@@ -1,5 +1,5 @@
 from django.conf.urls.defaults import patterns, include, url
-from blog.user_view import logout, register, resetpass, confirm, disable
+from blog.user_view import logout, register, confirm, disable
 from blog.views import newpost, profile, changeemail, approvement, approve_entry, disapprove_entry, home, edit, delete, post
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import admin
@@ -25,6 +25,11 @@ urlpatterns = patterns('',
     url(r'^accounts/changeemail/$', changeemail, name="changeemail"),
     url(r'^accounts/profile/$', profile),
     url(r'^confirm/(?P<activation_key>\w+)/$', confirm, name="confirm"),
+
+    url(r'^/accounts/password_reset/$', 'django.contrib.auth.views.password_reset', {'template_name': 'password_reset_form.html', 'email_template_name': 'password_reset_email.html'}),
+    url(r'^/password_reset/done/$', 'django.contrib.auth.views.password_reset_done', {'template_name': 'password_reset_done.html'}),
+    url(r'^reset/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+)/$', 'django.contrib.auth.views.password_reset_confirm', {'template_name': 'password_reset_confirm.html'}),
+    url(r'^reset/done/$', 'django.contrib.auth.views.password_reset_complete', {'template_name': 'password_reset_complete.html'}),
 
     url(r'^approve/$', approvement),
     url(r'^approve/entry/(?P<entry_id>\d+)/$', approve_entry, name="approve_entry"),
