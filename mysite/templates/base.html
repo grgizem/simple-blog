@@ -30,10 +30,10 @@
           <a class="brand" href="/">Blog</a>
 	  <div class="btn-group pull-right">
           	{% if user.is_authenticated %}
-			  <h4><a href="/accounts/profile/"><i class="icon-user"></i> {{ user.username }}</a></h4>
+			  <h4><a href="{% url profile %}"><i class="icon-user"></i> {{ user.username }}</a></h4>
 		{% else %}
-  			<li><a href="/accounts/login/">Login</a></li>
-			<li><a href="/accounts/register/">Register</a></li>
+  			<li><a href="{% url login %}">Login</a></li>
+			<li><a href="{% url register %}">Register</a></li>
 		{% endif %}
 	  </div>
         </div>
@@ -68,15 +68,15 @@
 	    <li class="nav-header">Navigation</li>
 	    <li><a href="/"><i class="icon-home"></i>Home</a></li>
 	    {% if user.is_authenticated %}
-	    <li><a href="/accounts/profile/"><i class="icon-user"></i>Profile</a></li>
-	    <li><a href="/newpost/"><i class="icon-pencil"></i>New Post</a></li>
+	    <li><a href="{% url profile %}"><i class="icon-user"></i>Profile</a></li>
+	    <li><a href="{% url new_post %}"><i class="icon-pencil"></i>New Post</a></li>
 	    {% if user.is_superuser %}
-	    <li><a href="/approve/"><i class="icon-cog"></i>Admin</a></li>
+	    <li><a href="{% url approve %}"><i class="icon-cog"></i>Admin</a></li>
 	    {% endif %}
-	    <li><a href="/accounts/logout/"><i class="icon-off"></i>Logout</a></li>
+	    <li><a href="{% url logout %}"><i class="icon-off"></i>Logout</a></li>
 	    {% else %}
-	    <li><a href="/accounts/login/"><i class="icon-user"></i>Login</a></li>
-	    <li><a href="/accounts/register/"><i class="icon-list-alt"></i>Register</a></li>
+	    <li><a href="{% url login %}"><i class="icon-user"></i>Login</a></li>
+	    <li><a href="{% url register %}"><i class="icon-list-alt"></i>Register</a></li>
 	    {% endif %}
 	  </ul>
 	</div>

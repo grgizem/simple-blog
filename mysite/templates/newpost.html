@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block content %}
-	<form action="{% url newpost %}" method="POST">
+	<form action="{% url new_post %}" method="POST">
 	{% csrf_token %}
 		<table>
 
