@@ -99,7 +99,22 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
+
+DEBUG_TOOLBAR_PANELS = (
+    'debug_toolbar.panels.version.VersionDebugPanel',
+    'debug_toolbar.panels.timer.TimerDebugPanel',
+    'debug_toolbar.panels.settings_vars.SettingsVarsDebugPanel',
+    'debug_toolbar.panels.headers.HeaderDebugPanel',
+    'debug_toolbar.panels.request_vars.RequestVarsDebugPanel',
+    'debug_toolbar.panels.template.TemplateDebugPanel',
+    'debug_toolbar.panels.sql.SQLDebugPanel',
+    'debug_toolbar.panels.signals.SignalDebugPanel',
+    'debug_toolbar.panels.logger.LoggingPanel',
+)
+
+INTERNAL_IPS = ('127.0.0.1',)
 
 ROOT_URLCONF = 'mysite.urls'
 
@@ -107,7 +122,8 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    "/home/gizem/Documents/blog/projects/simple-blog/mysite/templates"
+    "/home/gizem/Documents/blog/projects/simple-blog/mysite/templates",
+#    "/home/gizem/Documents/blog/lib/python2.7/site-packages/debug-toolbar/templates",
 )
 
 INSTALLED_APPS = (
@@ -121,6 +137,9 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'mysite.blog',
+    'debug_toolbar',
+#    "/home/gizem/Documents/blog/lib/python2.7/site-packages/debug-toolbar/templates",
+
 )
 
 # A sample logging configuration. The only tangible logging

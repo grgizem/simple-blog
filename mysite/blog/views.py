@@ -14,7 +14,7 @@ from django.core.mail import send_mail
 
 # home page:
 def home(request):
-    obj_list = Entry.objects.filter(approvement=True).order_by("-view_count")
+    obj_list = Entry.objects.select_related('author').filter(approvement=True).order_by("-view_count")
     paginator = Paginator(obj_list, 5)
     try:
 	page = int(request.GET.get('page','1'))
