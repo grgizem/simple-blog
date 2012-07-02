@@ -123,7 +123,6 @@ def delete(request,entry_id):
 	return HttpResponseRedirect('/')
 
 # show an entry:
-@login_required
 def post(request,entry_id):
     e = get_object_or_404(Entry, id=entry_id)
     e.viewed()
