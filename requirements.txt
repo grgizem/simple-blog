@@ -2,3 +2,5 @@ Django == 1.3
 django-debug-toolbar
 statsd
 django-statsd-mozilla
+python-statsd
+psycopg2
