@@ -3,6 +3,8 @@ from blog.user_view import logout, register, confirm, disable
 from blog.views import newpost, profile, changeemail, approvement, approve_entry, disapprove_entry, home, edit, delete, post
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import admin
+import settings
+
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -49,7 +51,7 @@ urlpatterns = patterns('',
 
 urlpatterns+= patterns('',
 	(r'^static/(?P<path>.*)$', 'django.views.static.serve',
-		{'document_root': "/home/gizem/Documents/blog/projects/simple-blog/mysite/static/"}))
+		{'document_root': settings.STATIC_ROOT}))
 
 handler404 = 'blog.error_view.error_404'
 handler500 = 'blog.error_view.error_500'
