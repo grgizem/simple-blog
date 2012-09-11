@@ -1,6 +1,8 @@
+import datetime
+
 from django.db import models
 from django.contrib.auth.models import User
-import datetime
+
 
 class Entry(models.Model):
     title = models.CharField(max_length=300)
@@ -16,8 +18,7 @@ class Entry(models.Model):
 	super(Entry, self).save()
 
     def viewed(self):
-	self.view_count=self.view_count+1
-	super(Entry, self).save()
+        Entry.objects.filter(id=self.id).update(view_count=models.F('view_count')+1)
 
     def __unicode__(self):
         return self.title
